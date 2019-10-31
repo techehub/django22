@@ -8,5 +8,7 @@ from django.template import loader
 
 def productInfo(req):
     template=loader.get_template("productinfo.html")
-    data= {}
+    data= {"name": "VIVO",
+           "desc": " Smart Phone",
+           "price": 45555}
     return HttpResponse(template.render(data,req))
