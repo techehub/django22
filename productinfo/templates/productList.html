@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>This is ProductInfo HTML page  QQQQQ </h1>
+
+{%  for product in products  %}
+
+<table border="1">
+
+    <tr>
+        <td>Name</td>
+        <td>{{product.name}}</td>
+    </tr>
+
+    <tr>
+        <td>Desc</td>
+        <td>{{product.desc}}</td>
+    </tr>
+
+  {%  if product.feature  %}
+
+     <tr>
+        <td>Features</td>
+        <td>
+
+            <ul>
+            {% for f in product.feature %}
+                <li>
+                {{f}}
+                </li>
+            {% endfor%}
+            </ul>
+
+        </td>
+    </tr>
+
+    {% endif %}
+
+    <tr>
+        <td>Price</td>
+        <td>{{product.price}}</td>
+    </tr>
+
+</table>
+
+<br/>
+<br/>
+
+{% endfor %}
+
+</body>
+</html>
