@@ -4,37 +4,33 @@ from django.shortcuts import render
 
 from django.http import  HttpResponse
 from django.template import loader
+from .models import Product
+
 
 
 def productInfo(req):
+
+    vals =req.GET
+    pid= vals['id']
+    print (pid)
+
     template=loader.get_template("productinfo.html")
-    data= {"name": "VIVO",
-           "desc": " Smart Phone",
-           "price": 45555}
+
+    product = Product.objects.get(id=pid)
+    data= {"product":product}
+    #data={}
     return HttpResponse(template.render(data,req))
 
 
 
 def productList(req):
     template=loader.get_template("productList.html")
+
+    plist = Product.objects.all()
+
     data= {
 
-        "products": [{"name": "VIVO",
-           "desc": " Smart Phone",
-           "price": 45555},
-
-         {"name": "OPPO",
-               "desc": " Smart Phone",
-               "price": 50000,
-               "feature": ["8GB RAM", "30 MP Camera", "6 Inch Display"]},
-
-        {"name": "Samsung",
-               "desc": " Smart Phone",
-               "price": 30000,
-            "feature": ["4GB RAM", "20 MP Camera", "5 Inch Display"]},
-
-
-         ]
+        "products": plist
 
     }
     return HttpResponse(template.render(data,req))
