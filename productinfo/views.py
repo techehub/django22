@@ -19,7 +19,19 @@ def productInfo(req):
     product = Product.objects.get(id=pid)
     data= {"product":product}
     #data={}
-    return HttpResponse(template.render(data,req))
+    response= HttpResponse(template.render(data,req))
+
+    cstr= ""
+    print (req.COOKIES)
+    if "INT_PROD" in req.COOKIES:
+        old_ids = req.COOKIES['INT_PROD']
+        cstr= old_ids+ "|" + str ( product.id)
+    else:
+        cstr=product.id
+
+    response.set_cookie("INT_PROD", cstr )
+
+    return response
 
 
 
