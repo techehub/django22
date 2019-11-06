@@ -4,6 +4,7 @@ from django.template import loader
 from .forms import UserReg
 from .models import User
 
+
 from django.http import  HttpResponse
 
 
@@ -14,7 +15,14 @@ def registerUser(request):
     return HttpResponse(template.render(data, request))
 
 def saveUserDetails(request):
-    data=request.GET
+
+    print (request.method)
+
+    if request.method=='POST':
+        data=request.POST
+
+    else :
+        data = request.GET
 
     fname= data['firstName']
     lname= data['lastName']
@@ -28,5 +36,8 @@ def saveUserDetails(request):
     user.pwd=pwd
     user.save()
 
-
     return HttpResponse("done")
+
+def logoutUser(request):
+    request.session.clear()
+    return HttpResponse("Logged out")

@@ -5,9 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<h1>This is ProductInfo HTML page  QQQQQ </h1>
+<h1>This is ProductInfo for {{product.id}} </h1>
 
-<table border="1">
+<table border="0">
+
+
+
+    <form action="addToCart">
 
     <tr>
         <td>Name</td>
@@ -24,6 +28,22 @@
         <td>{{product.price}}</td>
     </tr>
 
+     <tr>
+        <td>Quantity</td>
+        <td>
+             <input type="hidden"  name="id" value={{product.id}}>
+            <input type="text" name="qty">
+        </td>
+    </tr>
+
+     <tr>
+        <td></td>
+        <td><input type="submit" value="Add Item To Cart"></td>
+    </tr>
+
+
+
+</form>
 </table>
 
 </body>

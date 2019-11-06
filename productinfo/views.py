@@ -4,6 +4,8 @@ from django.shortcuts import render
 
 from django.http import  HttpResponse
 from django.template import loader
+from pip._internal import req
+
 from .models import Product
 
 
@@ -46,3 +48,37 @@ def productList(req):
 
     }
     return HttpResponse(template.render(data,req))
+
+
+
+def addItemToCart(request):
+
+    vals = request.GET
+
+    qty = vals['qty']
+    id = vals['id']
+
+    cartItems=""
+    if request.session.__contains__("cart") :
+        cartItems=request.session['cart']
+        print (cartItems)
+        if cartItems:
+            cartItems= cartItems+ ","
+
+    cartItems= cartItems+ id+ "|"+qty
+    request.session ['cart']= cartItems
+
+    print (request.session ['cart'])
+
+    return HttpResponse("Added Item to Cart")
+
+
+def displaycart(request):
+    if request.session.__contains__("cart"):
+        cartItems = request.session['cart']
+        return HttpResponse(cartItems)
+    else :
+        return HttpResponse("Your Cart is Empty")
+
+
+

@@ -8,8 +8,9 @@
 
 <h1> User Registration Page </h1>
 
-<form action="saveUser">
+<form action="saveUser" method="POST">
 
+    {% csrf_token %}
     <table>
         {{myform.as_table}}
     </table>
