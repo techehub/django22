@@ -51,7 +51,7 @@ def productList(req):
 
 
 
-def addItemToCart(request):
+def addItemToCart_old(request):
 
     vals = request.GET
 
@@ -73,9 +73,26 @@ def addItemToCart(request):
     return HttpResponse("Added Item to Cart")
 
 
+
+def addItemToCart(request):
+    vals = request.GET
+    qty = vals['qty']
+    id = vals['id']
+    cartItems={}
+
+    if request.session.__contains__("cart") :
+        cartItems=request.session['cart']
+
+    cartItems[id] = qty
+    request.session ['cart']= cartItems
+    print (request.session ['cart'])
+    return HttpResponse("Added Item to Cart")
+
+
 def displaycart(request):
     if request.session.__contains__("cart"):
         cartItems = request.session['cart']
+        print(request.session['cart'])
         return HttpResponse(cartItems)
     else :
         return HttpResponse("Your Cart is Empty")

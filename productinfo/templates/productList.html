@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+
+
+{%  extends "mypage.html" %}
+
+{% block pagetitle %}
+
+This is my ProductList Page
+
+{% endblock%}
+
+{% block test %}
+
 <h1>This is ProductInfo HTML page  QQQQQ </h1>
 
 {%  for product in products  %}
@@ -58,5 +63,4 @@
 
 {% endfor %}
 
-</body>
-</html>
+{% endblock  %}

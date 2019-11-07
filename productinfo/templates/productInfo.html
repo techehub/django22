@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>This is ProductInfo for {{product.id}} </h1>
+
+{%  extends "mypage.html" %}
+
+
+{% block pagetitle %}
+
+    {{product.pname}}
+
+{% endblock %}
+
+{% block test %}
 
 <table border="0">
-
-
 
     <form action="addToCart">
 
@@ -46,5 +47,5 @@
 </form>
 </table>
 
-</body>
-</html>
+
+{% endblock %}
